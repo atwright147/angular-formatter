@@ -19,14 +19,32 @@ angular.module('formatter', []).directive('formatter', ['$timeout', function($ti
 		// transclude: true,
 		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 		link: function($scope, elm, attrs, ngModel) {
+			// var formatted;
+			window.formatted;
 			var _pattern    = elm.attr('formatter-pattern') || '';
 			var _persistent = attrs.formatterPersistent ? true : false;
+			
 			$timeout(function() {
-				var formatted   = new Formatter(elm[0], {
+				formatted = new Formatter(elm[0], {
 					'pattern': _pattern,
 					'persistent': _persistent
 				});
 			});
+
+			if (window.formatted && window.formatted.val) {
+				ngModel.$setViewValue(window.formatted.val, 'input');
+			}
+
+			ngModel.$formatters.push(function(modelValue) {
+				var value = modelValue || '';
+				return value;
+			});
+
+			ngModel.$parsers.push(function(viewValue) {
+				var value = viewValue || '';
+				return value;
+			});
+
 		}
 	};
 }]);
