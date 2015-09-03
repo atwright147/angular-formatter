@@ -3,7 +3,7 @@
 *
 * Description
 */
-angular.module('formatter', []).directive('formatter', function(){
+angular.module('formatter', []).directive('formatter', ['$timeout', function($timeout){
 	// Runs during compile
 	return {
 		// name: '',
@@ -27,4 +27,4 @@ angular.module('formatter', []).directive('formatter', function(){
 			});
 		}
 	};
-});
+}]);
