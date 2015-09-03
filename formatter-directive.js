@@ -21,9 +21,11 @@ angular.module('formatter', []).directive('formatter', ['$timeout', function($ti
 		link: function($scope, elm, attrs, ngModel) {
 			var _pattern    = elm.attr('formatter-pattern') || '';
 			var _persistent = attrs.formatterPersistent ? true : false;
-			var formatted   = new Formatter(elm[0], {
-				'pattern': _pattern,
-				'persistent': _persistent
+			$timeout(function() {
+				var formatted   = new Formatter(elm[0], {
+					'pattern': _pattern,
+					'persistent': _persistent
+				});
 			});
 		}
 	};
