@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo | Input Formatter</title>
+	<style>
+		input {
+			font-size: 2em;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Demo | Input Formatter</h1>
+	<input type="text" formatter ng-model="model" formatter-pattern="{{9999}}-{{9999}}" formatter-persistent="true">
+	
+	<script src="./bower_components/angular/angular.js"></script>
+	<script src="./bower_components/formatter.js/dist/formatter.js"></script>
+	<script src="./formatter-directive.js"></script>
+	<script>
+		angular.module('app', ['formatter']);
+	</script>
+</body>
+</html>
